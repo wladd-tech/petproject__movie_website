@@ -1,7 +1,65 @@
-<!-- templates/index.html -->
+<!-- templates/main/index.html -->
 
 {% extends "main/_base.html" %}
 
+
+{% block header %}
+<header class="border-b-2 border-red-800 font-semibold">
+  <div class="m-auto w-4/6 flex justify-between items-center py-6">
+    <div>
+      <h2 class="text-xl">MovieDB</h2>
+    </div>
+
+    <ul class="flex gap-8 px-10">
+      <li class="hover:text-red-600">
+        <a href="/">Главная</a>
+      </li>
+      <li class="hover:text-red-600">
+        <a href="/catalog">Каталог</a>
+      </li>
+      <li class="hover:text-red-600">
+        <a href="/search">Поиск</a>
+      </li>
+      <li class="hover:text-red-600">
+        <a href="/users">Пользователи</a>
+      </li>
+    </ul>
+
+    <ul class="flex gap-8">
+      <li class="hover:text-red-600">
+        <a href="/sign-in">Войти</a>
+      </li>
+      <li class="hover:text-red-600">
+        <a href="/profile">Профиль</a>
+      </li>
+    </ul>
+  </div>
+</header>
+{% endblock header %}
+
 {% block content %}
-  <h1 class="text-3xl text-green-800">Django + Tailwind CSS</h1>
+<main class="w-2/3 m-auto grid grid-cols-6 gap-4 mt-14">
+  
+
+
+
+  <div class="rounded-2xl shadow-xl hover:-translate-y-1 cursor-pointer bg-white text-black">
+    <img class="rounded-2xl" src="imageURL" alt="poster" />
+  </div>
+
+
+</main>
 {% endblock content %}
+
+{% block footer %}
+<footer class="flex mt-10 border-t-2 border-red-800 font-semibold">
+  <div class="flex py-3 mr-10 ml-auto items-center gap-2 text-slate-300 cursor-pointer hover:text-red-600 text-lg">
+    <div class="h-6 w-6 items-center">
+      {% comment %} <a href="https://github.com/wladd-tech"
+        ><img src="/icons/gitHub.svg" alt="github link"
+      /></a> {% endcomment %}
+    </div>
+    <p><a href="https://github.com/wladd-tech">github/wladd-tech</a></p>
+  </div>
+</footer>
+{% endblock footer %}
