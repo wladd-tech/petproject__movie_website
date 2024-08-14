@@ -18,4 +18,5 @@ class Movie(models.Model):
     class Meta:
         db_table = "main_movie"
         verbose_name = "Кинофильм"
-        verbose_name_plural= "Кинофильмы"
+        verbose_name_plural = "Кинофильмы"
+        ordering = ('id',)

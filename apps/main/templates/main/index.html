@@ -47,8 +47,44 @@
 </div>
 {% endfor %}
 
-  
 </main>
+
+<!-- Pagination -->
+<div class="mx-auto">
+  <ul class="flex gap-1 select-none">
+    
+    <li>
+      {% if not movies.has_previous %}
+      <span class="block h-8 w-20 bg-background-black text-red-700 text-center leading-8 rounded-sm">Назад</span>
+      {% else %}
+      <a class="block h-8 w-20 bg-background-black text-white text-center leading-8 rounded-sm hover:bg-zinc-800 cursor-pointer" 
+      href="?page={{ movies.previous_page_number }}">Назад</a>
+      {% endif %}
+    </li>
+
+    {% for page in movies.paginator.page_range %}
+    {% if page >= movies.number|add:-2 and page <= movies.number|add:2 %}
+    <li>
+      <a class="{% if movies.number == page %} bg-red-900 pointer-events-none
+      {% else %} bg-background-black hover:bg-zinc-800 cursor-pointer{% endif %}
+      block size-8 text-white text-center leading-8 rounded-sm"
+      href="?page={{page}}">{{page}}</a>
+    </li>
+    {% endif %}
+    {% endfor %}
+
+    <li class="select-none">
+      {% if not movies.has_next %}
+      <span class="block h-8 w-28 bg-background-black text-red-700 text-center leading-8 rounded-sm">Следующая</span>
+      {% else %}
+      <a class="block h-8 w-28 bg-background-black text-white text-center leading-8 rounded-sm hover:bg-zinc-800 cursor-pointer" 
+      href="?page={{ movies.next_page_number }}">Следующая</a>
+      {% endif %}
+    </li>
+
+  </ul>
+</div>
+
 {% endblock content %}
 
 {% block footer %}

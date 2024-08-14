@@ -1,3 +1,4 @@
+from django.core.paginator import Paginator
 from django.http import JsonResponse
 from django.shortcuts import render
 from main.models import Movie
@@ -8,10 +9,16 @@ from main.models import Movie
 
 def index(request):
     movies = Movie.objects.all()
-    print(movies)
+
+    page = request.GET.get('page', 1)
+    paginator = Paginator(movies, 1)
+    current_page = paginator.page(page)
+
     context = {
-        "movies": movies,
+        "movies": current_page,
     }
+
+
     return render(request, "main/index.html", context)
 
 
