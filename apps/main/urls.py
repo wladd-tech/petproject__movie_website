@@ -7,4 +7,5 @@ urlpatterns = [
     path('catalog/', views.catalog, name="catalog"),
     path('search/', views.search, name="search"),
     path('users/', views.users, name="users"),
+    path('movie/<uuid:movie_id>', views.details, name="details"),
 ]
