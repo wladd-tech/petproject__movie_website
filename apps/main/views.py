@@ -1,11 +1,17 @@
 from django.http import JsonResponse
 from django.shortcuts import render
+from main.models import Movie
 
 # def index(request):
 #     return JsonResponse({'data': 'Hello World!'})
 
 def index(request):
-    return render(request, 'main/index.html')
+    movies = Movie.objects.all()
+    print(movies)
+    context = {
+        'movies': movies,
+    }
+    return render(request, 'main/index.html', context)
 
 
 def catalog(request):

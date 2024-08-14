@@ -41,13 +41,13 @@
 <main class="w-2/3 m-auto grid grid-cols-6 gap-4 mt-14">
   
 
+{% for movie in movies %}
+<div class="rounded-2xl shadow-xl hover:-translate-y-1 cursor-pointer bg-white text-black">
+  <img class="rounded-2xl" src="{{ movie.poster_url.url }}" alt="poster" />
+</div>
+{% endfor %}
 
-
-  <div class="rounded-2xl shadow-xl hover:-translate-y-1 cursor-pointer bg-white text-black">
-    <img class="rounded-2xl" src="imageURL" alt="poster" />
-  </div>
-
-
+  
 </main>
 {% endblock content %}
 
