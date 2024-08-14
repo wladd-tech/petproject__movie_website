@@ -38,10 +38,43 @@
 {% endblock header %}
 
 {% block content %}
-<main class="w-2/3 m-auto grid grid-cols-6 gap-4 mt-14">
+<main class="w-2/3 m-auto grid grid-cols-6 gap-4 mt-14 mb-10">
   
 
 {% for movie in movies %}
+<div class="rounded-2xl shadow-xl hover:-translate-y-1 cursor-pointer bg-white text-black">
+  <a href="{% url "main:details" movie_id=movie.id %}"><img class="rounded-2xl" src="{{ movie.poster_url.url }}" alt="poster" /></a>
+</div>
+<div class="rounded-2xl shadow-xl hover:-translate-y-1 cursor-pointer bg-white text-black">
+  <a href="{% url "main:details" movie_id=movie.id %}"><img class="rounded-2xl" src="{{ movie.poster_url.url }}" alt="poster" /></a>
+</div>
+<div class="rounded-2xl shadow-xl hover:-translate-y-1 cursor-pointer bg-white text-black">
+  <a href="{% url "main:details" movie_id=movie.id %}"><img class="rounded-2xl" src="{{ movie.poster_url.url }}" alt="poster" /></a>
+</div>
+<div class="rounded-2xl shadow-xl hover:-translate-y-1 cursor-pointer bg-white text-black">
+  <a href="{% url "main:details" movie_id=movie.id %}"><img class="rounded-2xl" src="{{ movie.poster_url.url }}" alt="poster" /></a>
+</div>
+<div class="rounded-2xl shadow-xl hover:-translate-y-1 cursor-pointer bg-white text-black">
+  <a href="{% url "main:details" movie_id=movie.id %}"><img class="rounded-2xl" src="{{ movie.poster_url.url }}" alt="poster" /></a>
+</div>
+<div class="rounded-2xl shadow-xl hover:-translate-y-1 cursor-pointer bg-white text-black">
+  <a href="{% url "main:details" movie_id=movie.id %}"><img class="rounded-2xl" src="{{ movie.poster_url.url }}" alt="poster" /></a>
+</div>
+<div class="rounded-2xl shadow-xl hover:-translate-y-1 cursor-pointer bg-white text-black">
+  <a href="{% url "main:details" movie_id=movie.id %}"><img class="rounded-2xl" src="{{ movie.poster_url.url }}" alt="poster" /></a>
+</div>
+<div class="rounded-2xl shadow-xl hover:-translate-y-1 cursor-pointer bg-white text-black">
+  <a href="{% url "main:details" movie_id=movie.id %}"><img class="rounded-2xl" src="{{ movie.poster_url.url }}" alt="poster" /></a>
+</div>
+<div class="rounded-2xl shadow-xl hover:-translate-y-1 cursor-pointer bg-white text-black">
+  <a href="{% url "main:details" movie_id=movie.id %}"><img class="rounded-2xl" src="{{ movie.poster_url.url }}" alt="poster" /></a>
+</div>
+<div class="rounded-2xl shadow-xl hover:-translate-y-1 cursor-pointer bg-white text-black">
+  <a href="{% url "main:details" movie_id=movie.id %}"><img class="rounded-2xl" src="{{ movie.poster_url.url }}" alt="poster" /></a>
+</div>
+<div class="rounded-2xl shadow-xl hover:-translate-y-1 cursor-pointer bg-white text-black">
+  <a href="{% url "main:details" movie_id=movie.id %}"><img class="rounded-2xl" src="{{ movie.poster_url.url }}" alt="poster" /></a>
+</div>
 <div class="rounded-2xl shadow-xl hover:-translate-y-1 cursor-pointer bg-white text-black">
   <a href="{% url "main:details" movie_id=movie.id %}"><img class="rounded-2xl" src="{{ movie.poster_url.url }}" alt="poster" /></a>
 </div>

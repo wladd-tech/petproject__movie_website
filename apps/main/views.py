@@ -11,7 +11,7 @@ def index(request):
     movies = Movie.objects.all()
 
     page = request.GET.get('page', 1)
-    paginator = Paginator(movies, 1)
+    paginator = Paginator(movies, 2)
     current_page = paginator.page(page)
 
     context = {
