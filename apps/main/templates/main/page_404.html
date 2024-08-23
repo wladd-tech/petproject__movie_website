@@ -1,0 +1,14 @@
+<!-- page_404.html -->
+
+{% extends "main/_base.html" %} 
+
+{% block content %}
+  <div class="text-center m-auto">
+      <h1 class="text-5xl font-bold">404</h1>
+      <p class="mt-4 text-lg">Упс! Страница не найдена.</p>
+      <p class="mt-2">Возможно, она была удалена или никогда не существовала.</p>
+      <a href="/" class="mt-6 inline-block px-4 py-2 text-white bg-red-700 hover:bg-red-800 rounded">
+          Вернуться на главную
+      </a>
+  </div>
+{% endblock content %}

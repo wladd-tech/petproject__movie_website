@@ -1,0 +1,32 @@
+<header class="border-b-2 border-red-800 font-semibold">
+    <div class="m-auto w-4/6 flex justify-between items-center py-4">
+      <div>
+        <h2 class="text-xl">MovieDB</h2>
+      </div>
+  
+      <ul class="flex gap-8 px-10">
+        <li class="hover:text-red-600">
+          <a href="{% url "main:index" %}">Главная</a>
+        </li>
+        {% comment %} pointer-events-none text-red-700 {% endcomment %}
+        <li class="hover:text-red-600">
+          <a href="{% url "main:catalog" %}">Каталог</a>
+        </li>
+        <li class="hover:text-red-600">
+          <a href="{% url "main:search" %}">Поиск</a>
+        </li>
+        <li class="hover:text-red-600">
+          <a href="{% url "main:users" %}">Пользователи</a>
+        </li>
+      </ul>
+  
+      <ul class="flex gap-8">
+        <li class="hover:text-red-600">
+          <a href="/sign-in">Войти</a>
+        </li>
+        <li class="hover:text-red-600">
+          <a href="/profile">Профиль</a>
+        </li>
+      </ul>
+    </div>
+  </header>
