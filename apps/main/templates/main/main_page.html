@@ -1,0 +1,27 @@
+<!-- main_page.html -->
+
+{% extends "main/_base.html" %}
+
+
+{% block content %}
+{% include "./components/_header.html" %}
+<div class="mx-auto flex-1 p-4">
+
+
+    <main class="w-2/3 m-auto grid grid-cols-6 gap-4 mt-14 mb-10">
+  
+
+        {% for movie in movies %}
+        <div class="shadow-xl hover:-translate-y-1 cursor-pointer text-black">
+          <a href="{% url "main:details" movie_id=movie.id %}"><img class="rounded-lg" src="{{ movie.poster_url.url }}" alt="poster" /></a>
+        </div>
+        {% endfor %}
+        
+        </main>
+        
+
+
+</div>
+{% include "./components/_pagination.html" %}
+{% include "./components/_footer.html" %}
+{% endblock content %}
