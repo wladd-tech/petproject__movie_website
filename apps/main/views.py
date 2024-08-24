@@ -21,10 +21,6 @@ def catalog(request):
     return render(request, "main/catalog_page.html")
 
 
-def search(request):
-    return render(request, "main/search_page.html")
-
-
 def users(request):
     return render(request, "main/users_page.html")
 
