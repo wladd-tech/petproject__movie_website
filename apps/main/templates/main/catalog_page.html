@@ -1,4 +1,4 @@
-<!-- catalog_page.html -->
+<!-- search_page.html -->
 
 {% extends "main/_base.html" %}
 
@@ -6,7 +6,65 @@
 {% block content %}
 {% include './components/_header.html' %}
 <div class="mx-auto flex-1 p-4">
-CATALOG_PAGE
+
+
+
+    <body class="bg-gray-100">
+
+        <header class="shadow">
+            <div class="container mx-auto p-4">
+                <h1 class="text-2xl font-bold">Интернет-магазин</h1>
+            </div>
+        </header>
+    
+        <main class="container mx-auto p-4">
+            <div class="flex">
+                <aside class="w-1/4 p-4">
+                    <h2 class="font-bold text-lg mb-4">Фильтры</h2>
+                    <div>
+                        <h3 class="font-semibold">Категории</h3>
+                        <ul>
+                            <li><input type="checkbox" id="category1" class="mr-2"/><label for="category1">Категория 1</label></li>
+                            <li><input type="checkbox" id="category2" class="mr-2"/><label for="category2">Категория 2</label></li>
+                            <li><input type="checkbox" id="category3" class="mr-2"/><label for="category3">Категория 3</label></li>
+                        </ul>
+                    </div>
+                    <div class="mt-4">
+                        <h3 class="font-semibold">Цена</h3>
+                        <input type="range" min="0" max="1000" class="w-full"/>
+                    </div>
+                </aside>
+                <section class="w-3/4 p-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                    <div class="bg-neutral-800 p-4 shadow rounded-lg">
+                        <img src="https://via.placeholder.com/150" alt="Товар 1" class="mb-4">
+                        <h3 class="font-semibold">Товар 1</h3>
+                        <p class="text-gray-600">Описание товара 1</p>
+                        <p class="font-bold mt-2">₽1000</p>
+                        <button class="mt-4 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">Добавить в корзину</button>
+                    </div>
+                    <div class="bg-neutral-800 p-4 shadow rounded-lg">
+                        <img src="https://via.placeholder.com/150" alt="Товар 2" class="mb-4">
+                        <h3 class="font-semibold">Товар 2</h3>
+                        <p class="text-gray-600">Описание товара 2</p>
+                        <p class="font-bold mt-2">₽1500</p>
+                        <button class="mt-4 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">Добавить в корзину</button>
+                    </div>
+                    <div class="bg-neutral-800 p-4 shadow rounded-lg">
+                        <img src="https://via.placeholder.com/150" alt="Товар 3" class="mb-4">
+                        <h3 class="font-semibold">Товар 3</h3>
+                        <p class="text-gray-600">Описание товара 3</p>
+                        <p class="font-bold mt-2">₽2000</p>
+                        <button class="mt-4 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">Добавить в корзину</button>
+                    </div>
+                    <!-- Добавляйте больше товаров по аналогии -->
+                </section>
+            </div>
+        </main>
+    
+    
+    </body>
+
+
 </div>
 {% include './components/_footer.html' %}
 {% endblock content %}

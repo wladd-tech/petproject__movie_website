@@ -1,0 +1,39 @@
+{% load static %}
+
+<div id="slider" class="w-full flex justify-center relative shadow-lg">
+    <img src="{% static 'img/thumb-1.jpg' %}" class="slide active w-full h-auto object-cover rounded-md"  alt="Картинка 1">
+    <img src="{% static 'img/thumb-2.jpeg' %}" class="slide w-full h-auto object-cover rounded-md" alt="Картинка 2">
+    <img src="{% static 'img/thumb-3.jpeg' %}" class="slide w-full h-auto object-cover rounded-md" alt="Картинка 3">
+
+    <div class="absolute inset-0 flex items-center justify-end pr-40  bg-black bg-opacity-70 rounded-md">
+      <div class="flex flex-col">
+        <h2 class="text-white text-3xl font-bold mb-4">Добро пожаловать в <span class="text-red-700">Cinema</span></h2>
+      
+        <p>Мгновенный поиск фильмов и удобный серфинг по базе данных.<br>
+          Вы всегда будете в курсе, что и когда смотреть.</p>
+        <a href="#" class="block py-1.5 mx-auto mt-10 px-5 w-fit text-white rounded-sm bg-red-700 items-center cursor-pointer hover:bg-red-800">Зарегистрироваться</a>
+      </div>
+    </div>
+</div>
+
+<script>
+    let currentSlide = 0;
+    const slides = document.querySelectorAll('.slide');
+    const totalSlides = slides.length;
+
+    function showSlide(index) {
+        slides.forEach((slide, i) => {
+            slide.classList.remove('active');
+            if (i === index) {
+                slide.classList.add('active');
+            }
+        });
+    }
+
+    function nextSlide() {
+        currentSlide = (currentSlide + 1) % totalSlides;
+        showSlide(currentSlide);
+    }
+
+    setInterval(nextSlide, 5000); // Переключение каждые 5 секунд
+</script>
