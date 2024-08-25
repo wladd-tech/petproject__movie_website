@@ -22,7 +22,11 @@
                         <p class="text-neutral-400">{{ movie.title_en }}</p>
                     {% endif %}
                     <div class="flex mt-12">
-                        <p class="text-neutral-200 mb-2"><span class="text-neutral-400">Страна: </span>{{ movie.country }}</p>
+                        <p class="text-neutral-200 mb-2">
+                            <span class="text-neutral-400">Страны:
+                                <span class="text-neutral-200">{{ movie.countries.all|join:", " }}</span>
+                            </span>  
+                        </p>
                         <p class="text-neutral-200 mb-2 px-10"><span class="text-neutral-400">Рейтинг: </span>{{ movie.age_rating }}+</p>
                         <p class="text-neutral-200 mb-2"><span class="text-neutral-400">Год выхода: </span>{{ movie.year }}</p>
                     </div>

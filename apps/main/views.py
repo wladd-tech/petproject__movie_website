@@ -1,7 +1,7 @@
 from django.core.paginator import Paginator
 from django.http import HttpResponseNotFound
 from django.shortcuts import render
-from main.models import Movie
+from main.models import Country, Movie
 from django.db.models import Count
 
 # def index(request):
@@ -18,10 +18,10 @@ from django.db.models import Count
 
 
 def index(request):
-    watch_now = Movie.objects.order_by("-year").only("id", "title_ru", "poster_url")[:6]
-    foreign_movies = Movie.objects.exclude(country__icontains="Россия").only("id", "title_ru", "poster_url")[:6]
-    russian_movies = Movie.objects.filter(country__icontains="Россия").only("id", "title_ru", "poster_url")[:6]
-    oldschool_movies = Movie.objects.order_by("year").only("id", "title_ru", "poster_url")[:6]
+    foreign_movies = Movie.objects.prefetch_related('countries').exclude(countries__name='Россия')[:6]
+    russian_movies = Movie.objects.prefetch_related('countries').filter(countries__name='Россия')[:6]
+    watch_now = Movie.objects.order_by("-year")[:6]
+    oldschool_movies = Movie.objects.order_by("year")[:6]
 
     context = {
         "movie_row_1": watch_now,
@@ -33,7 +33,14 @@ def index(request):
 
 
 def catalog(request):
-    return render(request, "main/catalog_page.html")
+    watch_now = Movie.objects.order_by("-year").only("id", "title_ru", "poster_url")[:1]
+
+    print(request.POST)
+
+    context = {
+        "related_movies": watch_now,
+    }
+    return render(request, "main/catalog_page.html", context)
 
 
 def users(request):
@@ -41,7 +48,7 @@ def users(request):
 
 
 def details(request, movie_id):
-    movie = Movie.objects.get(id=movie_id)
+    movie = Movie.objects.prefetch_related('countries').get(id=movie_id)
     context = {
         "movie": movie,
     }
