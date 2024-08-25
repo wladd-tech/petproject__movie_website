@@ -1,0 +1,26 @@
+<!-- main_page.html -->
+
+{% extends "main/_base.html" %}
+
+
+{% block content %}
+{% include "./components/_header.html" %}
+
+{% comment %} w-2/3 m-auto grid grid-cols-6 gap-4 mt-14 mb-10  {% endcomment %}
+
+<div class="container mx-auto flex-1 p-4 my-10">
+  <div class="grid grid-cols-7 gap-4">
+
+    {% for movie in movies %}
+    <div class="shadow-xl hover:-translate-y-1 cursor-pointer text-black">
+      <a href="{% url "main:details" movie_id=movie.id %}"><img class="rounded-lg" src="{{ movie.poster_url.url }}" alt="poster" /></a>
+    </div>
+    {% endfor %}
+
+  </div>
+</div>
+        
+
+{% include "./components/_pagination.html" %}
+{% include "./components/_footer.html" %}
+{% endblock content %}

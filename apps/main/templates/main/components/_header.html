@@ -1,0 +1,29 @@
+<header class="border-b-2 border-red-800 font-semibold">
+    <div class="m-auto container flex justify-between items-center p-4">
+      <div class="flex gap-8 pl-10 pr-12">
+        <h2 class="text-xl">This is <span class="text-red-600">Cinema</span></h2>
+      </div>
+  
+      <ul class="flex gap-10 px-4">
+        <li class="hover:text-red-600">
+          <a href="{% url "main:index" %}">Главная</a>
+        </li>
+        {% comment %} pointer-events-none text-red-700 {% endcomment %}
+        <li class="hover:text-red-600">
+          <a href="{% url "main:catalog" %}">Каталог</a>
+        </li>
+        <li class="hover:text-red-600">
+          <a href="{% url "main:users" %}">Пользователи</a>
+        </li>
+      </ul>
+  
+      <ul class="flex gap-8 pr-10">
+        <li class="hover:text-red-600">
+          <a href="/sign-in">Войти</a>
+        </li>
+        <li class="hover:text-red-600">
+          <a href="/profile">Профиль</a>
+        </li>
+      </ul>
+    </div>
+  </header>

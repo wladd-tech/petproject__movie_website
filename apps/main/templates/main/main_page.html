@@ -1,0 +1,62 @@
+<!-- main_page.html -->
+
+{% extends "main/_base.html" %}
+{% load static %}
+
+{% block content %}
+{% include "./components/_header.html" %}
+
+<div class="container mx-auto flex-1 p-4 ">
+  {% include "./components/_banner.html" %}
+
+  <h2 class="mt-12 mb-6 text-3xl">Сейчас смотрят</h2>
+  <div class="grid grid-cols-6 gap-4">
+    {% for movie in movie_row_1 %}
+    <a href="{% url "main:details" movie_id=movie.id %}">
+      <div class="bg-neutral-800 rounded-sm shadow-xl hover:-translate-y-1 cursor-pointer">
+        <img class="h-64 w-full object-cover rounded-t-sm" src="{{ movie.poster_url.url }}" alt="{{ movie.title_ru }}">
+        <h2 class="text-md font-semibold p-2 text-center">{{ movie.title_ru|truncatechars:18 }}</h2>
+      </div>
+    </a>
+    {% endfor %}
+  </div>
+
+  <h2 class="mt-12 mb-6 text-3xl">Зарубежное кино</h2>
+  <div class="grid grid-cols-6 gap-4">
+    {% for movie in movie_row_2 %}
+    <a href="{% url "main:details" movie_id=movie.id %}">
+      <div class="bg-neutral-800 rounded-sm shadow-xl hover:-translate-y-1 cursor-pointer">
+        <img class="h-64 w-full object-cover rounded-t-sm" src="{{ movie.poster_url.url }}" alt="{{ movie.title_ru }}">
+        <h2 class="text-md font-semibold p-2 text-center">{{ movie.title_ru|truncatechars:18 }}</h2>
+      </div>
+    </a>
+    {% endfor %}
+  </div>
+
+  <h2 class="mt-12 mb-6 text-3xl">Русское кино</h2>
+  <div class="grid grid-cols-6 gap-4">
+    {% for movie in movie_row_3 %}
+    <a href="{% url "main:details" movie_id=movie.id %}">
+      <div class="bg-neutral-800 rounded-sm shadow-xl hover:-translate-y-1 cursor-pointer">
+        <img class="h-64 w-full object-cover rounded-t-sm" src="{{ movie.poster_url.url }}" alt="{{ movie.title_ru }}">
+        <h2 class="text-md font-semibold p-2 text-center">{{ movie.title_ru|truncatechars:18 }}</h2>
+      </div>
+    </a>
+    {% endfor %}
+  </div>
+
+  <h2 class="mt-12 mb-6 text-3xl">Старая классика</h2>
+  <div class="grid grid-cols-6 gap-4">
+    {% for movie in movie_row_4 %}
+    <a href="{% url "main:details" movie_id=movie.id %}">
+      <div class="bg-neutral-800 rounded-sm shadow-xl hover:-translate-y-1 cursor-pointer">
+        <img class="h-64 w-full object-cover rounded-t-sm" src="{{ movie.poster_url.url }}" alt="{{ movie.title_ru }}">
+        <h2 class="text-md font-semibold p-2 text-center">{{ movie.title_ru|truncatechars:18 }}</h2>
+      </div>
+    </a>
+    {% endfor %}
+  </div>
+  
+</div>
+{% include "./components/_footer.html" %}
+{% endblock content %}
