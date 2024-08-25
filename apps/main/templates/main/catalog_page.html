@@ -8,61 +8,75 @@
 <div class="mx-auto flex-1 p-4">
 
 
-
-    <body class="bg-gray-100">
-
-        <header class="shadow">
-            <div class="container mx-auto p-4">
-                <h1 class="text-2xl font-bold">Интернет-магазин</h1>
-            </div>
-        </header>
-    
-        <main class="container mx-auto p-4">
+    <body class="bg-neutral-800">
+        <div class="container mx-auto px-4 py-8">
             <div class="flex">
-                <aside class="w-1/4 p-4">
-                    <h2 class="font-bold text-lg mb-4">Фильтры</h2>
+                <div class="w-4/5 pr-4">
+                    <!-- Карточки-->
+                    <div class="grid grid-cols-5 gap-4">
+                        {% for movie in related_movies %}
+                        <a href="{% url "main:details" movie_id=movie.id %}">
+                            <div class="bg-neutral-800 rounded-md shadow-xl hover:-translate-y-1 cursor-pointer">
+                                <img class="h-64 w-full object-cover rounded-t-md" src="{{ movie.poster_url.url }}" alt="{{ movie.title_ru }}">
+                                <h2 class="text-sm font-semibold p-2 text-center">{{ movie.title_ru|truncatechars:18 }}</h2>
+                            </div>
+                        </a>
+                        {% endfor %}
+                    </div>
+                </div>
+
+               
+                    <form method="POST" class="w-1/5 px-4">
+                        {% csrf_token %}
+                    <h2 class="text-lg font-semibold text-red-600">Фильтры</h2>
+                    <!-- Селектор -->
                     <div>
-                        <h3 class="font-semibold">Категории</h3>
-                        <ul>
-                            <li><input type="checkbox" id="category1" class="mr-2"/><label for="category1">Категория 1</label></li>
-                            <li><input type="checkbox" id="category2" class="mr-2"/><label for="category2">Категория 2</label></li>
-                            <li><input type="checkbox" id="category3" class="mr-2"/><label for="category3">Категория 3</label></li>
-                        </ul>
+                        <h3 class="font-semibold mt-5">Тип контента</h3>
+                        <div class="flex flex-col mt-2">
+                            <div class="font-normal"><input checked class="size-4 items-center" type="checkbox" name="type" value="movies"><span class="pl-3">Фильмы</span></div>
+                            <div class="font-normal"><input checked class="size-4 items-center" type="checkbox" name="type" value="serials"><span class="pl-3">Сериалы</span></div>
+                        </div>
+                        <h3 class="font-semibold mt-5">Подтипы контента</h3>
+                        <div class="flex flex-col mt-2">
+                            <div class="font-normal"><input checked class="size-4 items-center" type="checkbox" name="special" value="anime"><span class="pl-3">Аниме</span></div>
+                            <div class="font-normal"><input checked class="size-4 items-center" type="checkbox" name="special" value="doramas"><span class="pl-3">Дорамы</span></div>
+                            <div class="font-normal"><input checked class="size-4 items-center" type="checkbox" name="special" value="doramas"><span class="pl-3">Мультфильмы</span></div>
+                        </div>
+                        <h3 class="font-medium mt-5">Тип контента</h3>
+                        <select name="type" class="border bg-white text-black border-gray-300 rounded-sm px-1 w-full mt-2">
+                            <option value="all_types" selected>< Все варианты ></option>
+                            <option value="movies">Фильмы</option>
+                            <option value="serials">Сериалы</option>
+                            <option value="anime">Аниме</option>
+                            <option value="doramas">Дорамы</option>
+                        </select>
+                        <h3 class="font-medium mt-5">Страны</h3>
+                        <select class="border bg-white text-black border-gray-300 rounded-sm px-1 w-full mt-2">
+                            <option>Все</option>
+                            <option>Категория 1</option>
+                            <option>Категория 2</option>
+                        </select>
+                        <select class="border bg-white text-black border-gray-300 rounded-sm px-1 w-full mt-2">
+                            <option>Все</option>
+                            <h3 class="font-medium">Страны</h3>
+                            <option>Категория 1</option>
+                            <option>Категория 2</option>
+                        </select>
                     </div>
-                    <div class="mt-4">
-                        <h3 class="font-semibold">Цена</h3>
-                        <input type="range" min="0" max="1000" class="w-full"/>
+                    <!--Два инпута-->
+                    <div>
+                        <h3 class="font-medium">Цена</h3>
+                        <input type="text" placeholder="Минимум" class="border border-gray-300 rounded-xs px-1 w-full my-2 text-black outline-none">
+                        <input type="text" placeholder="Максимум" class="border border-gray-300 rounded-xs px-1 w-full mt-2 text-black outline-none">
                     </div>
-                </aside>
-                <section class="w-3/4 p-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-                    <div class="bg-neutral-800 p-4 shadow rounded-lg">
-                        <img src="https://via.placeholder.com/150" alt="Товар 1" class="mb-4">
-                        <h3 class="font-semibold">Товар 1</h3>
-                        <p class="text-gray-600">Описание товара 1</p>
-                        <p class="font-bold mt-2">₽1000</p>
-                        <button class="mt-4 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">Добавить в корзину</button>
-                    </div>
-                    <div class="bg-neutral-800 p-4 shadow rounded-lg">
-                        <img src="https://via.placeholder.com/150" alt="Товар 2" class="mb-4">
-                        <h3 class="font-semibold">Товар 2</h3>
-                        <p class="text-gray-600">Описание товара 2</p>
-                        <p class="font-bold mt-2">₽1500</p>
-                        <button class="mt-4 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">Добавить в корзину</button>
-                    </div>
-                    <div class="bg-neutral-800 p-4 shadow rounded-lg">
-                        <img src="https://via.placeholder.com/150" alt="Товар 3" class="mb-4">
-                        <h3 class="font-semibold">Товар 3</h3>
-                        <p class="text-gray-600">Описание товара 3</p>
-                        <p class="font-bold mt-2">₽2000</p>
-                        <button class="mt-4 bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">Добавить в корзину</button>
-                    </div>
-                    <!-- Добавляйте больше товаров по аналогии -->
-                </section>
+                    <button type="submit" class="bg-red-700 px-2 py-1.5 mt-10 rounded-sm">Применить</button>   
+                    </form>
+           
+            
             </div>
-        </main>
-    
-    
+        </div>
     </body>
+    
 
 
 </div>

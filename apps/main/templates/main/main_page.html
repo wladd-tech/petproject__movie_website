@@ -7,120 +7,56 @@
 {% include "./components/_header.html" %}
 
 <div class="container mx-auto flex-1 p-4 ">
-{% include "./components/_banner.html" %}
-   
+  {% include "./components/_banner.html" %}
+
   <h2 class="mt-12 mb-6 text-3xl">Сейчас смотрят</h2>
   <div class="grid grid-cols-6 gap-4">
-    <div class="bg-neutral-800 rounded-md shadow-xl">
-        <img class="h-64 w-full object-cover rounded-t-md" src="{% static "img/test.webp" %}" alt="Категория 1">
-        <h2 class="text-md font-semibold p-2 text-center">Волк с Уолл-стрит</h2>
-    </div>
-    <div class="bg-neutral-800 rounded-md shadow-xl">
-      <img class="h-64 w-full object-cover rounded-t-md" src="{% static "img/test.webp" %}" alt="Категория 2">
-      <h2 class="text-md font-semibold p-2 text-center">Категория 2</h2>
-    </div>
-    <div class="bg-neutral-800 rounded-md shadow-xl">
-      <img class="h-64 w-full object-cover rounded-t-md" src="{% static "img/test.webp" %}" alt="Категория 3">
-      <h2 class="text-md font-semibold p-2 text-center">Категория 3</h2>
-    </div>
-    <div class="bg-neutral-800 rounded-md shadow-xl">
-      <img class="h-64 w-full object-cover rounded-t-md" src="{% static "img/test.webp" %}" alt="Категория 4">
-      <h2 class="text-md font-semibold p-2 text-center">Категория 4</h2>
-    </div>
-    <div class="bg-neutral-800 rounded-md shadow-xl">
-      <img class="h-64 w-full object-cover rounded-t-md" src="{% static "img/test.webp" %}" alt="Категория 5">
-      <h2 class="text-md font-semibold p-2 text-center">Категория 5</h2>
-    </div>
-    <div class="bg-neutral-800 rounded-md shadow-xl">
-      <img class="h-64 w-full object-cover rounded-t-md" src="{% static "img/test.webp" %}" alt="Категория 6">
-      <h2 class="text-md font-semibold p-2 text-center">Категория 6</h2>
-    </div>
+    {% for movie in movie_row_1 %}
+    <a href="{% url "main:details" movie_id=movie.id %}">
+      <div class="bg-neutral-800 rounded-sm shadow-xl hover:-translate-y-1 cursor-pointer">
+        <img class="h-64 w-full object-cover rounded-t-sm" src="{{ movie.poster_url.url }}" alt="{{ movie.title_ru }}">
+        <h2 class="text-md font-semibold p-2 text-center">{{ movie.title_ru|truncatechars:18 }}</h2>
+      </div>
+    </a>
+    {% endfor %}
   </div>
 
-  <h2 class="mt-12 mb-6 text-3xl">Фильмы-новинки</h2>
+  <h2 class="mt-12 mb-6 text-3xl">Зарубежное кино</h2>
   <div class="grid grid-cols-6 gap-4">
-    <div class="bg-neutral-800 rounded-md shadow-xl">
-        <img class="h-64 w-full object-cover rounded-t-md" src="{% static "img/test.webp" %}" alt="Категория 1">
-        <h2 class="text-md font-semibold p-2 text-center">Категория 1</h2>
-    </div>
-    <div class="bg-neutral-800 rounded-md shadow-xl">
-      <img class="h-64 w-full object-cover rounded-t-md" src="{% static "img/test.webp" %}" alt="Категория 2">
-      <h2 class="text-md font-semibold p-2 text-center">Категория 2</h2>
-    </div>
-    <div class="bg-neutral-800 rounded-md shadow-xl">
-      <img class="h-64 w-full object-cover rounded-t-md" src="{% static "img/test.webp" %}" alt="Категория 3">
-      <h2 class="text-md font-semibold p-2 text-center">Категория 3</h2>
-    </div>
-    <div class="bg-neutral-800 rounded-md shadow-xl">
-      <img class="h-64 w-full object-cover rounded-t-md" src="{% static "img/test.webp" %}" alt="Категория 4">
-      <h2 class="text-md font-semibold p-2 text-center">Категория 4</h2>
-    </div>
-    <div class="bg-neutral-800 rounded-md shadow-xl">
-      <img class="h-64 w-full object-cover rounded-t-md" src="{% static "img/test.webp" %}" alt="Категория 5">
-      <h2 class="text-md font-semibold p-2 text-center">Категория 5</h2>
-    </div>
-    <div class="bg-neutral-800 rounded-md shadow-xl">
-      <img class="h-64 w-full object-cover rounded-t-md" src="{% static "img/test.webp" %}" alt="Категория 6">
-      <h2 class="text-md font-semibold p-2 text-center">Категория 6</h2>
-    </div>
+    {% for movie in movie_row_2 %}
+    <a href="{% url "main:details" movie_id=movie.id %}">
+      <div class="bg-neutral-800 rounded-sm shadow-xl hover:-translate-y-1 cursor-pointer">
+        <img class="h-64 w-full object-cover rounded-t-sm" src="{{ movie.poster_url.url }}" alt="{{ movie.title_ru }}">
+        <h2 class="text-md font-semibold p-2 text-center">{{ movie.title_ru|truncatechars:18 }}</h2>
+      </div>
+    </a>
+    {% endfor %}
   </div>
 
-  <h2 class="mt-12 mb-6 text-3xl">Популярные сериалы</h2>
+  <h2 class="mt-12 mb-6 text-3xl">Русское кино</h2>
   <div class="grid grid-cols-6 gap-4">
-    <div class="bg-neutral-800 rounded-md shadow-xl">
-        <img class="h-64 w-full object-cover rounded-t-md" src="{% static "img/test.webp" %}" alt="Категория 1">
-        <h2 class="text-md font-semibold p-2 text-center">Категория 1</h2>
-    </div>
-    <div class="bg-neutral-800 rounded-md shadow-xl">
-      <img class="h-64 w-full object-cover rounded-t-md" src="{% static "img/test.webp" %}" alt="Категория 2">
-      <h2 class="text-md font-semibold p-2 text-center">Категория 2</h2>
-    </div>
-    <div class="bg-neutral-800 rounded-md shadow-xl">
-      <img class="h-64 w-full object-cover rounded-t-md" src="{% static "img/test.webp" %}" alt="Категория 3">
-      <h2 class="text-md font-semibold p-2 text-center">Категория 3</h2>
-    </div>
-    <div class="bg-neutral-800 rounded-md shadow-xl">
-      <img class="h-64 w-full object-cover rounded-t-md" src="{% static "img/test.webp" %}" alt="Категория 4">
-      <h2 class="text-md font-semibold p-2 text-center">Категория 4</h2>
-    </div>
-    <div class="bg-neutral-800 rounded-md shadow-xl">
-      <img class="h-64 w-full object-cover rounded-t-md" src="{% static "img/test.webp" %}" alt="Категория 5">
-      <h2 class="text-md font-semibold p-2 text-center">Категория 5</h2>
-    </div>
-    <div class="bg-neutral-800 rounded-md shadow-xl">
-      <img class="h-64 w-full object-cover rounded-t-md" src="{% static "img/test.webp" %}" alt="Категория 6">
-      <h2 class="text-md font-semibold p-2 text-center">Категория 6</h2>
-    </div>
+    {% for movie in movie_row_3 %}
+    <a href="{% url "main:details" movie_id=movie.id %}">
+      <div class="bg-neutral-800 rounded-sm shadow-xl hover:-translate-y-1 cursor-pointer">
+        <img class="h-64 w-full object-cover rounded-t-sm" src="{{ movie.poster_url.url }}" alt="{{ movie.title_ru }}">
+        <h2 class="text-md font-semibold p-2 text-center">{{ movie.title_ru|truncatechars:18 }}</h2>
+      </div>
+    </a>
+    {% endfor %}
   </div>
 
-  <h2 class="mt-12 mb-6 text-3xl">Русские сериалы</h2>
+  <h2 class="mt-12 mb-6 text-3xl">Старая классика</h2>
   <div class="grid grid-cols-6 gap-4">
-    <div class="bg-neutral-800 rounded-md shadow-xl">
-        <img class="h-64 w-full object-cover rounded-t-md" src="{% static "img/test.webp" %}" alt="Категория 1">
-        <h2 class="text-md font-semibold p-2 text-center">Категория 1</h2>
-    </div>
-    <div class="bg-neutral-800 rounded-md shadow-xl">
-      <img class="h-64 w-full object-cover rounded-t-md" src="{% static "img/test.webp" %}" alt="Категория 2">
-      <h2 class="text-md font-semibold p-2 text-center">Категория 2</h2>
-    </div>
-    <div class="bg-neutral-800 rounded-md shadow-xl">
-      <img class="h-64 w-full object-cover rounded-t-md" src="{% static "img/test.webp" %}" alt="Категория 3">
-      <h2 class="text-md font-semibold p-2 text-center">Категория 3</h2>
-    </div>
-    <div class="bg-neutral-800 rounded-md shadow-xl">
-      <img class="h-64 w-full object-cover rounded-t-md" src="{% static "img/test.webp" %}" alt="Категория 4">
-      <h2 class="text-md font-semibold p-2 text-center">Категория 4</h2>
-    </div>
-    <div class="bg-neutral-800 rounded-md shadow-xl">
-      <img class="h-64 w-full object-cover rounded-t-md" src="{% static "img/test.webp" %}" alt="Категория 5">
-      <h2 class="text-md font-semibold p-2 text-center">Категория 5</h2>
-    </div>
-    <div class="bg-neutral-800 rounded-md shadow-xl">
-      <img class="h-64 w-full object-cover rounded-t-md" src="{% static "img/test.webp" %}" alt="Категория 6">
-      <h2 class="text-md font-semibold p-2 text-center">Категория 6</h2>
-    </div>
+    {% for movie in movie_row_4 %}
+    <a href="{% url "main:details" movie_id=movie.id %}">
+      <div class="bg-neutral-800 rounded-sm shadow-xl hover:-translate-y-1 cursor-pointer">
+        <img class="h-64 w-full object-cover rounded-t-sm" src="{{ movie.poster_url.url }}" alt="{{ movie.title_ru }}">
+        <h2 class="text-md font-semibold p-2 text-center">{{ movie.title_ru|truncatechars:18 }}</h2>
+      </div>
+    </a>
+    {% endfor %}
   </div>
-</div>
   
+</div>
 {% include "./components/_footer.html" %}
 {% endblock content %}
