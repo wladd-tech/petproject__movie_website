@@ -33,25 +33,17 @@ def index(request):
 
 
 def catalog(request):
-    if request.method == 'GET':
-        movie_list = Movie.objects.prefetch_related("countries").order_by("year")
-    elif request.method == 'POST':
+    country_list = Country.objects.all().only("code", "name")
+    movie_list = Movie.objects.prefetch_related("countries").order_by("year")
 
-        if request.POST.get("country") == "all":
-            movie_list = Movie.objects.prefetch_related("countries")
-        else:
-            country_code = request.POST.get("country")
-            movie_list = (Movie.objects.prefetch_related("countries")
-                               .filter(countries__code=country_code))
-
-            print(request.POST.get("country"))
-
-    else:
-        movie_list = None
+    if request.method == 'POST':
+        country_code = request.POST.get("country")
+        if country_code and country_code != "all":
+            movie_list = movie_list.filter(countries__code=country_code)
 
     context = {
         "movie_list": movie_list,
-        "country_list": Country.objects.all().only("code", "name"),
+        "country_list": country_list,
     }
 
     return render(request, "main/catalog_page.html", context)
