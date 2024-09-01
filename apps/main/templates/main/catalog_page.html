@@ -5,75 +5,60 @@
 
 {% block content %}
 {% include './components/_header.html' %}
-<div class="mx-auto flex-1 p-4">
+<div class="flex-1 p-4">
 
 
     <body class="bg-neutral-800">
-        <div class="container mx-auto px-4 py-8">
-            <div class="flex">
-                <div class="w-4/5 pr-4">
+        <div class="container mx-auto px-4 py-8 flex">
+
+            {% if movie_list %}
+                <div class="pr-4">
                     <!-- Карточки-->
                     <div class="grid grid-cols-5 gap-4">
-                        {% for movie in related_movies %}
+                        {% for movie in movie_list %}
                         <a href="{% url "main:details" movie_id=movie.id %}">
-                            <div class="bg-neutral-800 rounded-md shadow-xl hover:-translate-y-1 cursor-pointer">
-                                <img class="h-64 w-full object-cover rounded-t-md" src="{{ movie.poster_url.url }}" alt="{{ movie.title_ru }}">
-                                <h2 class="text-sm font-semibold p-2 text-center">{{ movie.title_ru|truncatechars:18 }}</h2>
+                            <div class="bg-neutral-800 rounded-sm shadow-xl hover:-translate-y-1 cursor-pointer">
+                                <img class="size-56 object-cover rounded-t-sm" src="{{ movie.poster_url.url }}" alt="{{ movie.title_ru }}">
+                                <h2 class="text-xs font-semibold py-2 px-0.5 text-center">{{ movie.title_ru|truncatechars:25 }}</h2>
                             </div>
                         </a>
                         {% endfor %}
                     </div>
                 </div>
+            {% else %}
+                <div class="block w-screen text-center"> <h3>Ничего не найдено!</h3></div>
+            {% endif %}
 
-               
-                    <form method="POST" class="w-1/5 px-4">
-                        {% csrf_token %}
+                <form method="POST" class="px-4 min-w-fit">
+                    {% csrf_token %}
                     <h2 class="text-lg font-semibold text-red-600">Фильтры</h2>
                     <!-- Селектор -->
                     <div>
+                         <!-- Выбор тип контента -->
                         <h3 class="font-semibold mt-5">Тип контента</h3>
                         <div class="flex flex-col mt-2">
                             <div class="font-normal"><input checked class="size-4 items-center" type="checkbox" name="type" value="movies"><span class="pl-3">Фильмы</span></div>
                             <div class="font-normal"><input checked class="size-4 items-center" type="checkbox" name="type" value="serials"><span class="pl-3">Сериалы</span></div>
                         </div>
+                        <!-- Выбор подтип контента -->
                         <h3 class="font-semibold mt-5">Подтипы контента</h3>
                         <div class="flex flex-col mt-2">
                             <div class="font-normal"><input checked class="size-4 items-center" type="checkbox" name="special" value="anime"><span class="pl-3">Аниме</span></div>
                             <div class="font-normal"><input checked class="size-4 items-center" type="checkbox" name="special" value="doramas"><span class="pl-3">Дорамы</span></div>
-                            <div class="font-normal"><input checked class="size-4 items-center" type="checkbox" name="special" value="doramas"><span class="pl-3">Мультфильмы</span></div>
+                            <div class="font-normal"><input checked class="size-4 items-center" type="checkbox" name="special" value="cartoons"><span class="pl-3">Мультики</span></div>
                         </div>
-                        <h3 class="font-medium mt-5">Тип контента</h3>
-                        <select name="type" class="border bg-white text-black border-gray-300 rounded-sm px-1 w-full mt-2">
-                            <option value="all_types" selected>< Все варианты ></option>
-                            <option value="movies">Фильмы</option>
-                            <option value="serials">Сериалы</option>
-                            <option value="anime">Аниме</option>
-                            <option value="doramas">Дорамы</option>
-                        </select>
-                        <h3 class="font-medium mt-5">Страны</h3>
-                        <select class="border bg-white text-black border-gray-300 rounded-sm px-1 w-full mt-2">
-                            <option>Все</option>
-                            <option>Категория 1</option>
-                            <option>Категория 2</option>
-                        </select>
-                        <select class="border bg-white text-black border-gray-300 rounded-sm px-1 w-full mt-2">
-                            <option>Все</option>
-                            <h3 class="font-medium">Страны</h3>
-                            <option>Категория 1</option>
-                            <option>Категория 2</option>
+                        <h3 class="font-medium mt-5">Страна</h3>
+                        <!-- Выбор страны -->
+                        <select name="country" class="border bg-white text-black border-gray-300 rounded-sm px-1 w-full mt-2">
+                            <option value="all">< Любая ></option>
+                            {% for country in country_list %}
+                                <option value="{{ country.code }}">{{ country.name }}</option>
+                            {% endfor %}
                         </select>
                     </div>
-                    <!--Два инпута-->
-                    <div>
-                        <h3 class="font-medium">Цена</h3>
-                        <input type="text" placeholder="Минимум" class="border border-gray-300 rounded-xs px-1 w-full my-2 text-black outline-none">
-                        <input type="text" placeholder="Максимум" class="border border-gray-300 rounded-xs px-1 w-full mt-2 text-black outline-none">
-                    </div>
-                    <button type="submit" class="bg-red-700 px-2 py-1.5 mt-10 rounded-sm">Применить</button>   
-                    </form>
-           
-            
-            </div>
+                    <button type="submit" class="bg-red-700 px-2 py-1.5 mt-10 rounded-sm">Применить</button>
+                </form>
+
         </div>
     </body>
     
